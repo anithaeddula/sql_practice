@@ -1,0 +1,36 @@
+--information functions
+select version();
+select database();
+select current_user();
+select connection_id();
+-- creation of tables--
+use algonex;
+/*CREATE TABLE customers (
+    customer_id BIGINT NOT NULL AUTO_INCREMENT,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (customer_id),
+
+    CONSTRAINT uq_customers_email
+        UNIQUE (email)
+) ;
+select * from customers;
+CREATE TABLE orders (
+    order_id BIGINT NOT NULL AUTO_INCREMENT,
+    order_number VARCHAR(30) NOT NULL,
+    customer_id BIGINT NOT NULL,
+    total_amount DECIMAL(12, 2) NOT NULL,
+
+    PRIMARY KEY (order_id),
+
+    CONSTRAINT uq_orders_order_number
+        UNIQUE (order_number),
+
+    CONSTRAINT fk_orders_customer
+        FOREIGN KEY (customer_id)
+        REFERENCES customers (customer_id)
+);
+
+
+
