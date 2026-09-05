@@ -1,3 +1,4 @@
+-- creation of 20 columns of table--
 CREATE TABLE cartoon_shows (
     cartoon_id INT PRIMARY KEY AUTO_INCREMENT,
     cartoon_name VARCHAR(100) NOT NULL,
@@ -47,6 +48,7 @@ VALUES
     'Little Singham','Singham',3,'Action','Hindi','India',2018,300,8.2,'Kids','Rohit Shetty','Reliance Animation','Police','Mumbai','Maharashtra',
     'littlesingham.com','singham@gmail.com',TRUE,'LS001'
 );
+select * from  cartoon_shows;
 -- aggregrate func + group by--
 select* from cartoon_shows;
 select count(*) from cartoon_channels;
