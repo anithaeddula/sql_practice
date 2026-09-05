@@ -1,0 +1,55 @@
+CREATE TABLE cartoon_shows (
+    cartoon_id INT PRIMARY KEY AUTO_INCREMENT,
+    cartoon_name VARCHAR(100) NOT NULL,
+    character_name VARCHAR(100) NOT NULL,
+    channel_id INT,
+    genre VARCHAR(50) NOT NULL,
+    language VARCHAR(50) DEFAULT 'Hindi',
+    country VARCHAR(50) DEFAULT 'India',
+    release_year INT CHECK (release_year >= 1950),
+    total_episodes INT CHECK (total_episodes > 0),
+    rating DECIMAL(3,1) CHECK (rating BETWEEN 0 AND 10),
+    age_group VARCHAR(20) DEFAULT 'Kids',
+    creator_name VARCHAR(100) NOT NULL,
+    production_company VARCHAR(100),
+    character_type VARCHAR(50),
+    city VARCHAR(50),
+    state VARCHAR(50),
+    website VARCHAR(150) UNIQUE,
+    contact_email VARCHAR(100) UNIQUE,
+    is_active BOOLEAN DEFAULT TRUE,
+    cartoon_code VARCHAR(20) NOT NULL UNIQUE,
+    FOREIGN KEY (channel_id)
+        REFERENCES cartoon_channels(channel_id)
+);
+INSERT INTO cartoon_shows(
+    cartoon_name,character_name,channel_id,genre,language,country,release_year,total_episodes,rating,age_group,creator_name,production_company,
+    character_type,city,state,website,contact_email,is_active,cartoon_code
+)
+VALUES
+(
+    'Chhota Bheem','Bheem',1,'Comedy','Hindi','India',2008,600,8.5,'Kids','Rajiv Chilaka','Green Gold Animation','Hero','Hyderabad','Telangana',
+    'chhotabheem.com','bheem@gmail.com',TRUE,'CB001'
+),
+(
+    'Motu Patlu','Motu',2,'Comedy','Hindi','India',2012,500,8.0,'Kids','Harish Mehta','Cosmos-Maya','Hero','Mumbai','Maharashtra','motupatlu.com',
+    'motu@gmail.com',TRUE,'MP001'
+),
+(
+    'Doraemon','Doraemon',4,'Comedy','Hindi','Japan',2005,700,9.0,'Kids','Fujiko F Fujio','Shin-Ei Animation','Robot','Tokyo','Tokyo','doraemon.com',
+    'doraemon@gmail.com',TRUE,'DR001'
+),
+(
+    'Shinchan','Shinchan',2,'Comedy','Hindi','Japan',2006,800,8.8,'Kids','Yoshito Usui','Shin-Ei Animation','Child','Tokyo','Tokyo','shinchan.com',
+    'shinchan@gmail.com',TRUE,'SC001'
+),
+(
+    'Little Singham','Singham',3,'Action','Hindi','India',2018,300,8.2,'Kids','Rohit Shetty','Reliance Animation','Police','Mumbai','Maharashtra',
+    'littlesingham.com','singham@gmail.com',TRUE,'LS001'
+);
+-- aggregrate func + group by--
+select* from cartoon_shows;
+select count(*) from cartoon_channels;
+select channel_name from cartoon_channels group by channel_name;
+select count(channel_name) from cartoon_channels;
+select country,launch_year, count(channel_name) from cartoon_channels group by country,launch_year;
